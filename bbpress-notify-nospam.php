@@ -97,6 +97,12 @@ class bbPress_Notify_noSpam {
 		if (get_post_status($topic_id) == 'spam') return;
 		
 		$opt_recipients = get_option('bbpress_notify_newtopic_recipients');
+		
+		// prevent mails to all users when no role has been chosen in the backend
+		if( !$opt_recipients ) {
+			return;
+		}
+		
 		$recipients = array();
 		foreach ((array)$opt_recipients as $opt_recipient)
 		{
@@ -146,6 +152,12 @@ class bbPress_Notify_noSpam {
 		if (get_post_status($topic_id) == 'spam') return;
 		
 		$opt_recipients = get_option('bbpress_notify_newreply_recipients');
+		
+		// prevent mails to all users when no role has been chosen in the backend
+		if( !$opt_recipients ) {
+			return;
+		}
+		
 		$recipients = array();
 		foreach ((array)$opt_recipients as $opt_recipient)
 		{
